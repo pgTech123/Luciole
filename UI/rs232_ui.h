@@ -15,6 +15,10 @@ public:
     explicit Rs232_ui(QWidget *parent = 0);
     ~Rs232_ui();
 
+signals:
+    void valueChanged(int id, float value, bool simulated);
+    void errorSent(int id, bool simulated);
+
 private:
     Ui::Rs232_ui *ui;
 };

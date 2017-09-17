@@ -33,7 +33,11 @@ SOURCES += \
     UI/drone.cpp \
     UI/valueelement.cpp \
     UI/aboutus.cpp \
-    UI/rs232_ui.cpp
+    UI/rs232_ui.cpp \
+    UI/simulationdialog.cpp \
+    UI/logdialog.cpp \
+    UI/battery.cpp \
+    logs.cpp
 
 HEADERS += \
         UI/mainwindow.h \
@@ -45,7 +49,12 @@ HEADERS += \
     UI/drone.h \
     UI/valueelement.h \
     UI/aboutus.h \
-    UI/rs232_ui.h
+    UI/rs232_ui.h \
+    UI/simulationdialog.h \
+    UI/logdialog.h \
+    constants.h \
+    UI/battery.h \
+    logs.h
 
 FORMS += \
         UI/mainwindow.ui \
@@ -54,4 +63,7 @@ FORMS += \
     UI/laser.ui \
     UI/drone.ui \
     UI/aboutus.ui \
-    UI/rs232_ui.ui
+    UI/rs232_ui.ui \
+    UI/simulationdialog.ui \
+    UI/logdialog.ui \
+    UI/battery.ui

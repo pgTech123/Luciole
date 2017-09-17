@@ -9,10 +9,16 @@
 #include "UI/drone.h"
 #include "UI/laser.h"
 #include "UI/systems.h"
+#include "UI/battery.h"
 
 // Menu widgets
 #include "UI/aboutus.h"
 #include "UI/rs232_ui.h"
+#include "UI/simulationdialog.h"
+#include "UI/logdialog.h"
+
+// Other
+#include "logs.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +45,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    Battery *m_uiBattery;
     Controls *m_uiControls;
     Drone *m_uiDrone;
     Laser *m_uiLaser;
@@ -46,6 +53,10 @@ private:
 
     AboutUs *m_aboutUs;
     Rs232_ui *m_rs232;
+    SimulationDialog *m_simulation;
+    LogDialog *m_logsUI;
+
+    Logs *m_logs;
 };
 
 #endif // MAINWINDOW_H

@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "valueelement.h"
+#include "constants.h"
 
 namespace Ui {
 class Drone;
@@ -17,13 +18,19 @@ public:
     explicit Drone(QWidget *parent = 0);
     ~Drone();
 
+public slots:
+    void error(int id, bool simulated);
+    void valueChanged(int id, float value, bool simulated);
+
 private:
     Ui::Drone *ui;
 
-    ValueElement *m_voltageCell1;
-    ValueElement *m_voltageCell2;
-    ValueElement *m_voltageCell3;
-    ValueElement *m_voltageCell4;
+    ValueElement *m_voltageGlobal;
+
+    ValueElement *m_temperatureCell1;
+    ValueElement *m_temperatureCell2;
+    ValueElement *m_temperatureCell3;
+    ValueElement *m_temperatureCell4;
 
     ValueElement *m_currentCell1;
     ValueElement *m_currentCell2;
@@ -34,12 +41,6 @@ private:
     ValueElement *m_powerCell2;
     ValueElement *m_powerCell3;
     ValueElement *m_powerCell4;
-
-    ValueElement *m_batVoltageCell1;
-    ValueElement *m_batVoltageCell2;
-    ValueElement *m_batVoltageCell3;
-    ValueElement *m_batCurrent;
-
 };
 
 #endif // DRONE_H

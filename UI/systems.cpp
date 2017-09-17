@@ -12,3 +12,13 @@ Systems::~Systems()
 {
     delete ui;
 }
+
+void Systems::error(int id, bool simulated)
+{
+
+}
+
+void Systems::valueChanged(int id, float value, bool simulated)
+{
+
+}

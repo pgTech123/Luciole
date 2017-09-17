@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SimulationDialog</class>
+ <widget class="QDialog" name="SimulationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>681</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Simulation</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>0</y>
+     <width>351</width>
+     <height>668</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="2">
+     <widget class="QCheckBox" name="checkBoxTempCell1">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Temperature Cell 3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Temperature Laser2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>Voltage Bat Cell 1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempLaser1"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Temperature Cell 1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QCheckBox" name="checkBoxTempCell3">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxCurCell2"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxVoltageGlobal"/>
+    </item>
+    <item row="8" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempCell4"/>
+    </item>
+    <item row="15" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatCell2"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QCheckBox" name="checkBoxTempCell2">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QCheckBox" name="checkBoxCurCell2">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>Temperature Laser3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxCurCell1"/>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Current Cell 3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Current Cell 1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QCheckBox" name="checkBoxCurCell1">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempCell3"/>
+    </item>
+    <item row="7" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxCurCell3"/>
+    </item>
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Temperature Laser1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Temperature Cell 2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QCheckBox" name="checkBoxVoltageGlobal">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Current Cell 4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Current Cell 2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatGlobal"/>
+    </item>
+    <item row="21" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxCellBalancing"/>
+    </item>
+    <item row="14" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatCell1"/>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Temperature Cell 4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempLaser2"/>
+    </item>
+    <item row="9" column="2">
+     <widget class="QCheckBox" name="checkBoxCurCell4">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempLaser3"/>
+    </item>
+    <item row="7" column="2">
+     <widget class="QCheckBox" name="checkBoxCurCell3">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempLaser4"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempCell1"/>
+    </item>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>Temperature Laser4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxTempCell2"/>
+    </item>
+    <item row="18" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatCur"/>
+    </item>
+    <item row="19" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatTemp"/>
+    </item>
+    <item row="9" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxCurCell4"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Voltage Global</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatCell3"/>
+    </item>
+    <item row="8" column="2">
+     <widget class="QCheckBox" name="checkBoxTempCell4">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="1">
+     <widget class="QDoubleSpinBox" name="doubleSpinBoxBatLevel"/>
+    </item>
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>Voltage Bat Cell 2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>Voltage Bat Cell 3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0">
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>Voltage Bat Global</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_18">
+      <property name="text">
+       <string>Current Bat</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="0">
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>Temperature Bat</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="0">
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>Battery Level</string>
+      </property>
+     </widget>
+    </item>
+    <item row="21" column="0">
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>Cell Balancing</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="2">
+     <widget class="QCheckBox" name="checkBoxTempLaser1">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="QCheckBox" name="checkBoxTempLaser2">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="QCheckBox" name="checkBoxTempLaser3">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="2">
+     <widget class="QCheckBox" name="checkBoxTempLaser4">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="2">
+     <widget class="QCheckBox" name="checkBoxBatCell1">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="2">
+     <widget class="QCheckBox" name="checkBoxBatCell2">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="2">
+     <widget class="QCheckBox" name="checkBoxBatCell3">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="2">
+     <widget class="QCheckBox" name="checkBoxBatGlobal">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="2">
+     <widget class="QCheckBox" name="checkBoxBatCurrent">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="2">
+     <widget class="QCheckBox" name="checkBoxBatTemperature">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="2">
+     <widget class="QCheckBox" name="checkBoxBatLevel">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+    <item row="21" column="2">
+     <widget class="QCheckBox" name="checkBoxCellBalancing">
+      <property name="text">
+       <string>Error</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

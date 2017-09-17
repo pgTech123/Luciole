@@ -203,7 +203,7 @@
           <height>101</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayoutDrone_2"/>
+        <layout class="QVBoxLayout" name="verticalLayoutBattery"/>
        </widget>
       </widget>
      </item>

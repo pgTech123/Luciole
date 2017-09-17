@@ -15,6 +15,16 @@ public:
     explicit Controls(QWidget *parent = 0);
     ~Controls();
 
+public slots:
+    void error(int id, bool simulated);
+    void valueChanged(int id, float value, bool simulated);
+
+private slots:
+    void unlock(bool);
+    void lock(bool);
+
+    void on_pushButtonEmergencyStop_clicked(bool);
+
 private:
     Ui::Controls *ui;
 };

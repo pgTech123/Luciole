@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->centralWidget->setLayout(ui->gridLayout);
 
+    m_logs = new Logs(this);
+
     // Child Widgets
+    m_uiBattery = new Battery(this);
     m_uiControls = new Controls(this);
     m_uiDrone = new Drone(this);
     m_uiLaser = new Laser(this);
@@ -17,16 +20,50 @@ MainWindow::MainWindow(QWidget *parent) :
     // Menu Widgets
     m_aboutUs = new AboutUs();
     m_rs232 = new Rs232_ui();
+    m_simulation = new SimulationDialog();
+    m_logsUI = new LogDialog();
 
     // Setup child widgets
     this->setupSubWidgets();
 
-    // Signals
+    // Signals menu
     connect(ui->actionConnect, SIGNAL(triggered(bool)), this, SLOT(showConnectWidget()));
     connect(ui->actionClose, SIGNAL(triggered(bool)), this, SLOT(close()));
     connect(ui->actionSimulation, SIGNAL(triggered(bool)), this,SLOT(showSimulationWidget()));
     connect(ui->actionLogs, SIGNAL(triggered(bool)), this, SLOT(showLogWidget()));
     connect(ui->actionAbout_us, SIGNAL(triggered(bool)), this, SLOT(showAboutUsWidget()));
+
+    // Signals core.
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiBattery, SLOT(error(int,bool)));
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiControls, SLOT(error(int,bool)));
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiDrone, SLOT(error(int,bool)));
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiLaser, SLOT(error(int,bool)));
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiSystems, SLOT(error(int,bool)));
+
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiBattery, SLOT(valueChanged(int,float,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiControls, SLOT(valueChanged(int,float,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiDrone, SLOT(valueChanged(int,float,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiLaser, SLOT(valueChanged(int,float,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiSystems, SLOT(valueChanged(int,float,bool)));
+
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiBattery, SLOT(error(int,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiControls, SLOT(error(int,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiDrone, SLOT(error(int,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiLaser, SLOT(error(int,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiSystems, SLOT(error(int,bool)));
+
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiBattery, SLOT(valueChanged(int,float,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiControls, SLOT(valueChanged(int,float,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiDrone, SLOT(valueChanged(int,float,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiLaser, SLOT(valueChanged(int,float,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiSystems, SLOT(valueChanged(int,float,bool)));
+
+    // Logs
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_logs, SLOT(logError(int,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_logs, SLOT(logValue(int,float,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_logs, SLOT(logError(int,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_logs, SLOT(logValue(int,float,bool)));
+
 }
 
 MainWindow::~MainWindow()
@@ -35,15 +72,19 @@ MainWindow::~MainWindow()
 
     delete m_aboutUs;
     delete m_rs232;
+    delete m_simulation;
+    delete m_logsUI;
 }
 
 void MainWindow::setupSubWidgets()
 {
+    ui->verticalLayoutBattery->addWidget(m_uiBattery);
     ui->verticalLayoutControls->addWidget(m_uiControls);
     ui->verticalLayoutDrone->addWidget(m_uiDrone);
     ui->verticalLayoutLaser->addWidget(m_uiLaser);
     ui->verticalLayoutSystems->addWidget(m_uiSystems);
 
+    ui->groupBoxBattery->setLayout(ui->verticalLayoutBattery);
     ui->groupBoxControls->setLayout(ui->verticalLayoutControls);
     ui->groupBoxDrone->setLayout(ui->verticalLayoutDrone);
     ui->groupBoxLaser->setLayout(ui->verticalLayoutLaser);
@@ -65,12 +106,28 @@ void MainWindow::showConnectWidget()
 
 void MainWindow::showSimulationWidget()
 {
-
+    m_simulation->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            m_simulation->size(),
+            qApp->desktop()->availableGeometry()
+        ));
+    m_simulation->show();
+    m_simulation->activateWindow();
 }
 
 void MainWindow::showLogWidget()
 {
-
+    m_logsUI->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            m_logsUI->size(),
+            qApp->desktop()->availableGeometry()
+        ));
+    m_logsUI->show();
+    m_logsUI->activateWindow();
 }
 
 void MainWindow::showAboutUsWidget()
