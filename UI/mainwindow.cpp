@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_rs232 = new Rs232_ui();
     m_simulation = new SimulationDialog();
     m_logsUI = new LogDialog();
+    m_logsUI->setLogMaster(m_logs); // Shitty way... Passing ref instead of doing a singleton.
 
     // Setup child widgets
     this->setupSubWidgets();
@@ -128,6 +129,7 @@ void MainWindow::showLogWidget()
         ));
     m_logsUI->show();
     m_logsUI->activateWindow();
+    m_logsUI->refresh();
 }
 
 void MainWindow::showAboutUsWidget()

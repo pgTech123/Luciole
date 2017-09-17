@@ -2,6 +2,8 @@
 #define LOGDIALOG_H
 
 #include <QDialog>
+#include <QString>
+#include <logs.h>
 
 namespace Ui {
 class LogDialog;
@@ -15,8 +17,16 @@ public:
     explicit LogDialog(QWidget *parent = 0);
     ~LogDialog();
 
+    void setLogMaster(Logs* logs);
+    void refresh();
+
+private slots:
+    void refresh(bool);
+
 private:
     Ui::LogDialog *ui;
+
+    Logs *m_logs;
 };
 
 #endif // LOGDIALOG_H
