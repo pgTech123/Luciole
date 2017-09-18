@@ -16,19 +16,21 @@ void Logs::logValue(int id, float value, bool simulated)
 
     (*m_debugStream) << getTime() << ",";
     for(int i = 0; i < NUM_ITEMS_MONITORED-1; i++) {
-        (*m_debugStream) << m_values[i] << "," << m_simulated[i] << ",";
+        (*m_debugStream) << m_values[i] << ",";
     }
-    (*m_debugStream) << m_values[NUM_ITEMS_MONITORED-1] << "," << m_simulated[NUM_ITEMS_MONITORED-1]<< endl;
+    (*m_debugStream) << m_values[NUM_ITEMS_MONITORED-1] << endl;
 }
 
 void Logs::logError(int id, bool simulated)
 {
-    (*m_errorStream) << getTime() << "," << id << "," << simulated << endl;
+    (*m_errorStream) << getTime() << "," << ITEMS_MONITORED[id] << "," << simulated << endl;
 }
 
 QString Logs::getText()
 {
-    return QString(m_errorStream->readAll());
+    m_errorStream->flush();
+    m_debugStream->flush();
+    return QString(m_errorFile->readLine());    //TODO: This is not working...
 }
 
 void Logs::openStreams()
@@ -42,6 +44,18 @@ void Logs::openStreams()
     if (m_debugFile->open(QIODevice::ReadWrite)) {
         m_debugStream = new QTextStream(m_debugFile);
     }
+    this->writeTags();
+}
+
+void Logs::writeTags()
+{
+    (*m_debugStream) << "Timestamp";
+    for(int i = 0; i < NUM_ITEMS_MONITORED; i++) {
+        (*m_debugStream) << "," << ITEMS_MONITORED[i];
+    }
+    (*m_debugStream) << endl;
+
+    (*m_errorStream) << "Timestamp,Sensor,Simulated" << endl;
 }
 
 QString Logs::getTime()

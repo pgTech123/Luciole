@@ -23,7 +23,7 @@ void Controls::error(int, bool)
     }
 }
 
-void Controls::valueChanged(int id, float value, bool simulated)
+void Controls::valueChanged(int, float, bool)
 {
     // Unused
 }

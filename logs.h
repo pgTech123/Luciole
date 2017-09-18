@@ -25,6 +25,7 @@ public slots:
 
 private:
     void openStreams();
+    void writeTags();
     QString getTime();
 
 private:

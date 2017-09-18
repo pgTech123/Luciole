@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include <string.h>
+
 // Items Monitored
 #define VOLTAGE_GLOBAL      0
 
@@ -29,5 +31,32 @@
 #define BAT_LEVEL           20
 
 #define NUM_ITEMS_MONITORED 21
+
+
+const char*const ITEMS_MONITORED[NUM_ITEMS_MONITORED] = {
+    "VOLTAGE_GLOBAL",
+    "TEMPERATURE_CELL1",
+    "TEMPERATURE_CELL2",
+    "TEMPERATURE_CELL3",
+    "TEMPERATURE_CELL4",
+    "CURRENT_CELL1",
+    "CURRENT_CELL2",
+    "CURRENT_CELL3",
+    "CURRENT_CELL4",
+    "TEMPERATURE_LASER1",
+    "TEMPERATURE_LASER2",
+    "TEMPERATURE_LASER3",
+    "TEMPERATURE_LASER4",
+    "BAT_CELL1",
+    "BAT_CELL2",
+    "BAT_CELL3",
+    "BAT_TOT",
+    "BAT_CURRENT",
+    "BAT_TEMPERATURE",
+    "BAT_CELL_BALANCING",
+    "BAT_LEVEL"
+};
+
+
 
 #endif // CONSTANTS_H
