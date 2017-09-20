@@ -38,7 +38,8 @@ SOURCES += \
     UI/simulationdialog.cpp \
     UI/logdialog.cpp \
     UI/battery.cpp \
-    logs.cpp
+    logs.cpp \
+    UI/graphbarelement.cpp
 
 HEADERS += \
         UI/mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     UI/logdialog.h \
     constants.h \
     UI/battery.h \
-    logs.h
+    logs.h \
+    UI/graphbarelement.h
 
 FORMS += \
         UI/mainwindow.ui \
@@ -68,3 +70,6 @@ FORMS += \
     UI/simulationdialog.ui \
     UI/logdialog.ui \
     UI/battery.ui
+
+RESOURCES += \
+    ressources.qrc

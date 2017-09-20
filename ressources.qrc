@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Ressources/balancing.jpg</file>
+        <file>Ressources/logo.png</file>
+        <file>Ressources/battery.jpg</file>
+        <file>Ressources/drone.jpg</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

@@ -201,7 +201,7 @@ void SimulationDialog::on_checkBoxTempLaser4_toggled(bool checked)
 void SimulationDialog::on_checkBoxBatLevel_toggled(bool checked)
 {
     if(checked) {
-        emit errorSent(BAT_CELL1, true);
+        emit errorSent(BAT_LEVEL, true);
     }
 }
 

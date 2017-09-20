@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QByteArray>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 
@@ -24,15 +25,22 @@ signals:
     void valueChanged(int id, float value, bool simulated);
     void errorSent(int id, bool simulated);
 
+public slots:
+    bool writeData(const QByteArray &writeData);
+
 private slots:
     void accept();
     void refreshUI();
     bool tryConnection();
 
+    void readData();
+    void errorComm(QSerialPort::SerialPortError);
+
 private:
     Ui::Rs232_ui *ui;
 
     QSerialPort m_serialPort;
+    QByteArray  m_readData;
 };
 
 #endif // RS232_UI_H

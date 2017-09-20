@@ -1,12 +1,22 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
+#include <QTimer>
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 #include "constants.h"
 #include "valueelement.h"
+#include "graphbarelement.h"
+
+#define IMG_RATIO           0.7
+#define UPDATE_FREQ_MS      500
+
+enum States {
+    IDLE, CHARGING, DISCHARGING, BALANCING
+};
 
 namespace Ui {
 class Battery;
@@ -27,6 +37,9 @@ public slots:
 private:
     void setupScene();
 
+private slots:
+    void update();
+
 private:
     Ui::Battery *ui;
 
@@ -36,9 +49,17 @@ private:
     ValueElement *m_batVoltageCell3;
     ValueElement *m_batCurrent;
     ValueElement *m_batTemperature;
+    GraphBarElement *m_batteryLevel;
 
     QGraphicsView *m_view;
     QGraphicsScene *m_scene;
+    QGraphicsPixmapItem* m_balancingImg;
+    QGraphicsPixmapItem* m_batteryImg;
+
+    States m_batteryState;
+
+    QTimer *m_flashBattery;
+
 };
 
 #endif // BATTERY_H

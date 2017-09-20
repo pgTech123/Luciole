@@ -7,6 +7,12 @@ Battery::Battery(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    m_batteryState = IDLE;
+
+    m_flashBattery = new QTimer(this);
+    m_flashBattery->start(UPDATE_FREQ_MS);
+    connect(m_flashBattery, SIGNAL(timeout()), this, SLOT(update()));
+
     m_view = new QGraphicsView(this);
     m_scene = new QGraphicsScene(this);
     m_view->setScene(m_scene);
@@ -18,6 +24,7 @@ Battery::Battery(QWidget *parent) :
     m_batVoltageCell3 = new ValueElement(this, "Battery Voltage Cell 3");
     m_batCurrent = new ValueElement(this, "Battery Current");
     m_batTemperature = new ValueElement(this, "Battery Temperature");
+    m_batteryLevel = new GraphBarElement(this, "Battery Level");
 
     ui->verticalLayout->addWidget(m_batVoltageGlobal);
     ui->verticalLayout->addWidget(m_batVoltageCell1);
@@ -25,6 +32,7 @@ Battery::Battery(QWidget *parent) :
     ui->verticalLayout->addWidget(m_batVoltageCell3);
     ui->verticalLayout->addWidget(m_batCurrent);
     ui->verticalLayout->addWidget(m_batTemperature);
+    ui->verticalLayout->addWidget(m_batteryLevel);
     ui->verticalLayout->addWidget(m_view);
 
     this->setLayout(ui->verticalLayout);
@@ -56,6 +64,9 @@ void Battery::error(int id, bool simulated)
     case BAT_TEMPERATURE:
         m_batTemperature->triggerAlarm(simulated);
         break;
+    case BAT_LEVEL:
+        m_batteryLevel->triggerAlarm(simulated);
+        break;
     default:
         break;
     }
@@ -82,6 +93,17 @@ void Battery::valueChanged(int id, float value, bool)
     case BAT_TEMPERATURE:
         m_batTemperature->setValue(value);
         break;
+    case BAT_LEVEL:
+        m_batteryLevel->setValue(value);
+        break;
+    case BAT_CELL_BALANCING:
+        if(value > 0) { m_batteryState = BALANCING;}
+        else {
+            if(m_batCurrent->getValue() == 0 ) m_batteryState = IDLE;
+            else if(m_batCurrent->getValue() > 0) m_batteryState = CHARGING;
+            else m_batteryState = DISCHARGING;
+        }
+        break;
     default:
         break;
     }
@@ -89,5 +111,32 @@ void Battery::valueChanged(int id, float value, bool)
 
 void Battery::setupScene()
 {
-    //TODO: Mettre le dessin anime que Carlos va faire :P
+    // Set Background black
+    m_scene->setBackgroundBrush(QBrush(QColor(0,0,0)));
+
+    m_balancingImg = new QGraphicsPixmapItem(QPixmap(":/images/Ressources/balancing.jpg"));
+    m_batteryImg = new QGraphicsPixmapItem(QPixmap(":/images/Ressources/battery.jpg"));
+    m_balancingImg->setScale(IMG_RATIO);
+    m_batteryImg->setScale(IMG_RATIO);
+    m_scene->addItem(m_balancingImg);
+    m_scene->addItem(m_batteryImg);
+    m_balancingImg->setOpacity(0);
+
+}
+
+void Battery::update()
+{
+    static bool transparent = true;
+    if (m_batteryState == BALANCING && transparent) {
+        m_balancingImg->setOpacity(1);
+        m_batteryImg->setOpacity(0);
+        transparent = false;
+    } else if(m_batteryState == BALANCING && !transparent) {
+        m_balancingImg->setOpacity(0.65);
+        m_batteryImg->setOpacity(0);
+        transparent = true;
+    } else {
+        m_balancingImg->setOpacity(0.0);
+        m_batteryImg->setOpacity(1);
+    }
 }

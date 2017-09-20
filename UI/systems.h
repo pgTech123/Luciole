@@ -2,6 +2,12 @@
 #define SYSTEMS_H
 
 #include <QWidget>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+
+#define IMG_RATIO           0.75
+
 
 namespace Ui {
 class Systems;
@@ -20,7 +26,14 @@ public slots:
     void valueChanged(int id, float value, bool simulated);
 
 private:
+    void setupScene();
+
+private:
     Ui::Systems *ui;
+
+    QGraphicsView *m_view;
+    QGraphicsScene *m_scene;
+    QGraphicsPixmapItem* m_droneImg;
 };
 
 #endif // SYSTEMS_H

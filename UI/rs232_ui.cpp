@@ -22,8 +22,11 @@ void Rs232_ui::accept()
     } else {
         // Display warning
         QMessageBox msgBox;
+        int err = m_serialPort.error();
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText("Unable to connect to serial port " + ui->comboBoxPort->currentText());
+        msgBox.setInformativeText(QString("Error: ") + QString::number(err) + QString(" ") +
+                                  m_serialPort.errorString());
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
     }
@@ -58,13 +61,34 @@ bool Rs232_ui::tryConnection()
     QString serialPortName = ui->comboBoxPort->currentText();
     m_serialPort.setPortName(serialPortName);
 
-    int serialPortBaudRate = ui->comboBoxPort->currentText().toInt();
+    qint32 serialPortBaudRate = ui->comboBoxBaudRate->currentText().toInt();
     m_serialPort.setBaudRate(serialPortBaudRate);
 
-    if (!m_serialPort.open(QIODevice::ReadWrite)) {
+    if (!m_serialPort.open(QIODevice::ReadOnly)) {
         return false;
     }
 
-    //TODO: SerialPortReader serialPortReader(&serialPort);
+    connect(&m_serialPort, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect(&m_serialPort, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(errorComm()));
+
     return true;
+}
+
+void Rs232_ui::readData()
+{
+    m_readData.append(m_serialPort.readAll());
+}
+
+bool Rs232_ui::writeData(const QByteArray &writeData)
+{
+    qint64 bytesWritten = m_serialPort.write(writeData);
+    if(bytesWritten != writeData.size()) {
+        return false;
+    }
+    return true;
+}
+
+void Rs232_ui::errorComm(QSerialPort::SerialPortError)
+{
+    //TODO: log comm error
 }
