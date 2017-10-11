@@ -2,6 +2,7 @@
 #define BATTERY_H
 
 #include <QTimer>
+#include <QLabel>
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
@@ -11,7 +12,7 @@
 #include "valueelement.h"
 #include "graphbarelement.h"
 
-#define IMG_RATIO           0.7
+#define IMG_RATIO           0.6
 #define UPDATE_FREQ_MS      500
 
 enum States {
@@ -50,6 +51,9 @@ private:
     ValueElement *m_batCurrent;
     ValueElement *m_batTemperature;
     GraphBarElement *m_batteryLevel;
+
+    QLabel *m_bmsGain;
+    QLabel *m_bmsOffset;
 
     QGraphicsView *m_view;
     QGraphicsScene *m_scene;

@@ -69,14 +69,25 @@ bool Rs232_ui::tryConnection()
     }
 
     connect(&m_serialPort, SIGNAL(readyRead()), this, SLOT(readData()));
-    connect(&m_serialPort, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(errorComm()));
+    connect(&m_serialPort, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(errorComm(QSerialPort::SerialPortError)));
 
     return true;
 }
 
 void Rs232_ui::readData()
 {
-    m_readData.append(m_serialPort.readAll());
+    // Mapping is NOT thread safe. We assume the only place we fill and empty
+    // the mapping buffer is this function.
+    m_mapping.append(m_serialPort.readAll());
+    if(m_mapping.frameReady()) {
+        Frame frame = m_mapping.readFrame();
+        for (int i = 0; i < NUM_ITEMS_MONITORED; i++) {
+            emit valueChanged(i, frame.values[i], false);
+            if (frame.errors[i]) {
+                emit errorSent(i, false);
+            }
+        }
+    }
 }
 
 bool Rs232_ui::writeData(const QByteArray &writeData)

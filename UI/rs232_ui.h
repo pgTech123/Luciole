@@ -9,6 +9,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 
+#include "RS232/mapping.h"
+
 namespace Ui {
 class Rs232_ui;
 }
@@ -41,6 +43,8 @@ private:
 
     QSerialPort m_serialPort;
     QByteArray  m_readData;
+
+    Mapping m_mapping;
 };
 
 #endif // RS232_UI_H

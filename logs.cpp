@@ -7,30 +7,44 @@ Logs::Logs(QObject *parent) : QObject(parent)
         m_values[i] = 0;
         m_simulated[i] = false;
     }
+
+    m_writeTimer = new QTimer(this);
+    m_writeTimer->start(WRITE_TIMER_MS);
+    connect(m_writeTimer, SIGNAL(timeout()), this, SLOT(writeLogs()));
+}
+
+Logs::~Logs()
+{
+    m_errorStream->flush();
+    m_debugStream->flush();
 }
 
 void Logs::logValue(int id, float value, bool simulated)
 {
     m_values[id] = value;
     m_simulated[id] = simulated;
-
-    (*m_debugStream) << getTime() << ",";
-    for(int i = 0; i < NUM_ITEMS_MONITORED-1; i++) {
-        (*m_debugStream) << m_values[i] << ",";
-    }
-    (*m_debugStream) << m_values[NUM_ITEMS_MONITORED-1] << endl;
 }
 
 void Logs::logError(int id, bool simulated)
 {
-    (*m_errorStream) << getTime() << "," << ITEMS_MONITORED[id] << "," << simulated << endl;
+    (*m_errorStream) << getTime() << "," << ITEMS_MONITORED[id] << "," << m_values[id] << "," << simulated << endl;
 }
 
 QString Logs::getText()
 {
     m_errorStream->flush();
     m_debugStream->flush();
-    return QString(m_errorFile->readLine());    //TODO: This is not working...
+
+    QFile file(ERROR_LOG_FILENAME);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return QString("No errors!");
+
+    QString str;
+    while (!file.atEnd()) {
+        QByteArray line = file.readLine();
+        str.append(line);
+    }
+    return str;
 }
 
 void Logs::openStreams()
@@ -55,12 +69,23 @@ void Logs::writeTags()
     }
     (*m_debugStream) << endl;
 
-    (*m_errorStream) << "Timestamp,Sensor,Simulated" << endl;
+    (*m_errorStream) << "Timestamp,Sensor,Value,Simulated" << endl;
 }
 
 QString Logs::getTime()
 {
-    QDateTime date = QDateTime::currentDateTime();
-    return date.toString();
+    qint64 date = QDateTime::currentMSecsSinceEpoch();
+    return QString::number(date);
 }
 
+void Logs::writeLogs()
+{
+    (*m_debugStream) << getTime() << ",";
+    for(int i = 0; i < NUM_ITEMS_MONITORED-1; i++) {
+        (*m_debugStream) << m_values[i] << ",";
+    }
+    (*m_debugStream) << m_values[NUM_ITEMS_MONITORED-1] << endl;
+
+    m_errorStream->flush();
+    m_debugStream->flush();
+}

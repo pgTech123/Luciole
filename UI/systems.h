@@ -1,12 +1,15 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <constants.h>
+
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
+#include <QPushButton>
 
-#define IMG_RATIO           0.75
+#define IMG_RATIO           0.70
 
 
 namespace Ui {
@@ -28,12 +31,21 @@ public slots:
 private:
     void setupScene();
 
+    void flashCells(int id);
+    void flashBat();
+    void flashLasers(int id);
+
+private slots:
+    void clearErrors();
+
 private:
     Ui::Systems *ui;
 
     QGraphicsView *m_view;
     QGraphicsScene *m_scene;
     QGraphicsPixmapItem* m_droneImg;
+
+    QPushButton *m_clearButton;
 };
 
 #endif // SYSTEMS_H

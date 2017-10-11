@@ -30,7 +30,10 @@
 #define BAT_CELL_BALANCING  19
 #define BAT_LEVEL           20
 
-#define NUM_ITEMS_MONITORED 21
+#define BMS_OFFSET          21
+#define BMS_GAIN            22
+
+#define NUM_ITEMS_MONITORED 23
 
 
 const char*const ITEMS_MONITORED[NUM_ITEMS_MONITORED] = {

@@ -25,6 +25,10 @@ Battery::Battery(QWidget *parent) :
     m_batCurrent = new ValueElement(this, "Battery Current");
     m_batTemperature = new ValueElement(this, "Battery Temperature");
     m_batteryLevel = new GraphBarElement(this, "Battery Level");
+    m_bmsGain = new QLabel(this);
+    m_bmsOffset = new QLabel(this);
+    m_bmsGain->setText("Gain: Unknown");
+    m_bmsOffset->setText("Offset: Unknown");
 
     ui->verticalLayout->addWidget(m_batVoltageGlobal);
     ui->verticalLayout->addWidget(m_batVoltageCell1);
@@ -34,6 +38,8 @@ Battery::Battery(QWidget *parent) :
     ui->verticalLayout->addWidget(m_batTemperature);
     ui->verticalLayout->addWidget(m_batteryLevel);
     ui->verticalLayout->addWidget(m_view);
+    ui->verticalLayout->addWidget(m_bmsGain);
+    ui->verticalLayout->addWidget(m_bmsOffset);
 
     this->setLayout(ui->verticalLayout);
 }
@@ -103,6 +109,12 @@ void Battery::valueChanged(int id, float value, bool)
             else if(m_batCurrent->getValue() > 0) m_batteryState = CHARGING;
             else m_batteryState = DISCHARGING;
         }
+        break;
+    case BMS_GAIN:
+        m_bmsGain->setText("Gain: " + QString::number(value));
+        break;
+    case BMS_OFFSET:
+        m_bmsOffset->setText("Offset: " + QString::number(value));
         break;
     default:
         break;

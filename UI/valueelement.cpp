@@ -4,6 +4,7 @@ ValueElement::ValueElement(QWidget *parent, QString name, bool vertical) : Alarm
 {
     m_lcd = new QLCDNumber(this);
     setup(name, m_lcd);
+    m_lcd->setDigitCount(6);
 }
 
 ValueElement::~ValueElement()

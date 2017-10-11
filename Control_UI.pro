@@ -39,7 +39,8 @@ SOURCES += \
     UI/logdialog.cpp \
     UI/battery.cpp \
     logs.cpp \
-    UI/graphbarelement.cpp
+    UI/graphbarelement.cpp \
+    RS232/mapping.cpp
 
 HEADERS += \
         UI/mainwindow.h \
@@ -57,7 +58,8 @@ HEADERS += \
     constants.h \
     UI/battery.h \
     logs.h \
-    UI/graphbarelement.h
+    UI/graphbarelement.h \
+    RS232/mapping.h
 
 FORMS += \
         UI/mainwindow.ui \
