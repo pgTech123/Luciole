@@ -65,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_logs, SLOT(logError(int,bool)));
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_logs, SLOT(logValue(int,float,bool)));
 
+    // Emergency
+    connect(m_uiControls, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
+
 }
 
 MainWindow::~MainWindow()

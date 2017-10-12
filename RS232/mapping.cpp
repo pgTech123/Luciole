@@ -78,7 +78,7 @@ Frame Mapping::readFrame()
     frame.values[BAT_CURRENT] = bytesToBMSCurrent(m_uartFrame.curBat_H, m_uartFrame.curBat_L);
     frame.values[BAT_TEMPERATURE] = bytesToBMSTemp(m_uartFrame.tempBat_H, m_uartFrame.tempBat_L);
     frame.values[BAT_CELL_BALANCING] = 0;   //TODO
-    frame.values[BAT_LEVEL] = (frame.values[BAT_TOT]-10.7) * (12.6-10.7) / 100;   // Maybe not best approx...  10.7V = 0%
+    frame.values[BAT_LEVEL] = 100* (12.6-10.7) / (frame.values[BAT_TOT]-10.7);   // Maybe not best approx...  10.7V = 0%
 
     frame.values[BMS_GAIN] = calibrateGain();
     frame.values[BMS_OFFSET] = calibrateOffset();

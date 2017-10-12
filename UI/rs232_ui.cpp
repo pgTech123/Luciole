@@ -64,7 +64,7 @@ bool Rs232_ui::tryConnection()
     qint32 serialPortBaudRate = ui->comboBoxBaudRate->currentText().toInt();
     m_serialPort.setBaudRate(serialPortBaudRate);
 
-    if (!m_serialPort.open(QIODevice::ReadOnly)) {
+    if (!m_serialPort.open(QIODevice::ReadWrite)) {
         return false;
     }
 

@@ -46,5 +46,6 @@ void Controls::lock(bool)
 
 void Controls::on_pushButtonEmergencyStop_clicked(bool)
 {
-    //TODO: Emergency Stop sequence here
+    QByteArray data = "E";
+    emit emergency(data);
 }

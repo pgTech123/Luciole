@@ -3,14 +3,18 @@
 
 #include <constants.h>
 
+#include <QTimer>
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
 
+#define FLASHING_TIME_MS    150
 #define IMG_RATIO           0.70
 
+#define OPACITY_LOW         0.1
+#define OPACITY_HIGH        0.7
 
 namespace Ui {
 class Systems;
@@ -36,6 +40,7 @@ private:
     void flashLasers(int id);
 
 private slots:
+    void updateScene();
     void clearErrors();
 
 private:
@@ -46,6 +51,18 @@ private:
     QGraphicsPixmapItem* m_droneImg;
 
     QPushButton *m_clearButton;
+
+    QTimer *m_timer;
+
+    QGraphicsEllipseItem *m_flashCell1;
+    QGraphicsEllipseItem *m_flashCell2;
+    QGraphicsEllipseItem *m_flashCell3;
+    QGraphicsEllipseItem *m_flashCell4;
+    QGraphicsEllipseItem *m_flashLaser1;
+    QGraphicsEllipseItem *m_flashLaser2;
+    QGraphicsEllipseItem *m_flashLaser3;
+    QGraphicsEllipseItem *m_flashLaser4;
+    QGraphicsEllipseItem *m_flashBat;
 };
 
 #endif // SYSTEMS_H

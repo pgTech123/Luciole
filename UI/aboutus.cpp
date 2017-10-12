@@ -12,7 +12,7 @@ AboutUs::AboutUs(QWidget *parent) :
     ui(new Ui::AboutUs)
 {
     ui->setupUi(this);
-    this->setFixedSize(380,220);
+    this->setFixedSize(380,270);
 }
 
 AboutUs::~AboutUs()
