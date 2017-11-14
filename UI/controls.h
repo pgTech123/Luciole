@@ -29,6 +29,7 @@ private slots:
     void runMode(bool);
 
     void on_pushButtonEmergencyStop_clicked(bool);
+    void on_pushButtonRstEmergency_clicked(bool);
     void on_pushButtonChg_clicked(bool);
     void on_pushButtonDsg_clicked(bool);
     void on_pushButtonChgDsg_clicked(bool);

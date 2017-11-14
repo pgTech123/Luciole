@@ -15,6 +15,8 @@
 #define END_KEY             0xBB
 #define UART_FRAME_LENGTH   50
 
+#define VDD_MCU_BASE_STATION    3.315
+
 
 #define RESOLUTION          (pow((double)2, 12) - 1)
 #define DRONE_VOLTAGE_GAIN  4.83
@@ -125,6 +127,8 @@ private:
 
     float bytesToDroneVoltage(unsigned char hi, unsigned lo);
     float bytesToBMSVoltage(unsigned char hi, unsigned lo);
+    float bytesToBMSVoltageGlobal(unsigned char hi, unsigned lo);
+
 
     float bytesToDroneCurrent(unsigned char hi, unsigned lo);
     float bytesToBMSCurrent(unsigned char hi, unsigned lo);

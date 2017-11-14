@@ -99,13 +99,6 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Drone Ready</string>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="0">
      <widget class="QLabel" name="modeLabel">
       <property name="sizePolicy">
@@ -116,6 +109,13 @@
       </property>
       <property name="text">
        <string>Mode</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButtonRstEmergency">
+      <property name="text">
+       <string>Reset Emergency</string>
       </property>
      </widget>
     </item>

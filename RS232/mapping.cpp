@@ -74,14 +74,14 @@ Frame Mapping::readFrame()
     frame.values[BAT_CELL1] = bytesToBMSVoltage(m_uartFrame.vBatCell1_H, m_uartFrame.vBatCell1_L);
     frame.values[BAT_CELL2] = bytesToBMSVoltage(m_uartFrame.vBatCell2_H, m_uartFrame.vBatCell2_L);
     frame.values[BAT_CELL3] =  bytesToBMSVoltage(m_uartFrame.vBatCell3_H, m_uartFrame.vBatCell3_L);
-    frame.values[BAT_TOT] =  bytesToBMSVoltage(m_uartFrame.vBat_H, m_uartFrame.vBat_L)  * 4;    //FIXME: *4???
+    frame.values[BAT_TOT] =  bytesToBMSVoltageGlobal(m_uartFrame.vBat_H, m_uartFrame.vBat_L);
     frame.values[BAT_CURRENT] = bytesToBMSCurrent(m_uartFrame.curBat_H, m_uartFrame.curBat_L);
     frame.values[BAT_TEMPERATURE] = bytesToBMSTemp(m_uartFrame.tempBat_H, m_uartFrame.tempBat_L);
     frame.values[BAT_CELL_BALANCING] = 0;   //TODO
-    frame.values[BAT_LEVEL] = 100* (12.6-10.7) / (frame.values[BAT_TOT]-10.7);   // Maybe not best approx...  10.7V = 0%
+    frame.values[BAT_LEVEL] = 100 * (frame.values[BAT_TOT]-10.7) / (12.6-10.7);   // Maybe not best approx...  10.7V = 0%
 
-    frame.values[BMS_GAIN] = m_uartFrame.sysReg;// tmp  calibrateGain();
-    frame.values[BMS_OFFSET] = m_uartFrame.ctrl2Reg;// tmp  calibrateOffset();
+    frame.values[BMS_GAIN] = m_uartFrame.sysReg; //calibrateGain();
+    frame.values[BMS_OFFSET] = m_uartFrame.ctrl1Reg; //calibrateOffset();
 
     // Preset everything to 0.
     for(int i = 0; i < NUM_ITEMS_MONITORED; i++){
@@ -203,18 +203,32 @@ float Mapping::bytesToBMSVoltage(unsigned char hi, unsigned lo)
     return result;
 }
 
+float Mapping::bytesToBMSVoltageGlobal(unsigned char hi, unsigned lo)
+{
+    uint16_t value = to16bits(hi, lo);
+    float gain = calibrateGain();
+    float offset = calibrateOffset();
+    float result = (4* gain * (float)value + (3*offset))/1000;
+    return result;
+}
+
 float Mapping::bytesToDroneCurrent(unsigned char hi, unsigned lo)
 {
     float voltage = bytesToDroneVoltage(hi, lo);
     float result = (voltage * 5000) / (RSENSE_CELL * RCUR); //See INA138NA/3K datasheet
-    return result;
+    //return result;
+
+    // FIXME: TEMPORARY FIX
+    double current = (37.783*pow(result,5))-(102.16*pow(result,4))+(101.16*pow(result,3))-(44.411*pow(result,2))+13.077*result;
+    return current;
 }
 
 float Mapping::bytesToBMSCurrent(unsigned char hi, unsigned lo)
 {
     int16_t value = to16bits(hi, lo);
-    float result = value * 0.00000844/0.005;
-    return result;
+    float result = value * 0.00000844/0.002;
+    //return result;
+    return result * 1.3278; // FIXME: TEMPORARY FIX
 }
 
 float Mapping::bytesToDroneTemp(unsigned char hi, unsigned lo)
@@ -238,7 +252,7 @@ float Mapping::bytesToBMSTemp(unsigned char hi, unsigned lo)
 float Mapping::bytesToLaserTemp(unsigned char hi, unsigned lo)
 {
     float voltage = bytesToDroneVoltage(hi, lo);
-    float rTherm = ((voltage/m_vddMCU) * R0_TERM) / (1- voltage/m_vddMCU);
+    float rTherm = ((voltage/VDD_MCU_BASE_STATION) * R0_TERM) / (1- voltage/VDD_MCU_BASE_STATION);
     float temperature = B_TERM_LASER/(log(rTherm/(R0_TERM*exp(-B_TERM_LASER/T_AMB))))-273;
     return temperature;
 }

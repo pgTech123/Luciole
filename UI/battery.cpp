@@ -27,8 +27,8 @@ Battery::Battery(QWidget *parent) :
     m_batteryLevel = new GraphBarElement(this, "Battery Level");
     m_bmsGain = new QLabel(this);
     m_bmsOffset = new QLabel(this);
-    m_bmsGain->setText("Gain: Unknown");
-    m_bmsOffset->setText("Offset: Unknown");
+    m_bmsGain->setText("SysReg: Unknown");
+    m_bmsOffset->setText("Ctrl1: Unknown");
 
     ui->verticalLayout->addWidget(m_batVoltageGlobal);
     ui->verticalLayout->addWidget(m_batVoltageCell1);
@@ -111,10 +111,10 @@ void Battery::valueChanged(int id, float value, bool)
         }
         break;
     case BMS_GAIN:
-        m_bmsGain->setText("Gain: " + QString::number(value));
+        m_bmsGain->setText("SysReg: " + QString::number(value));    // Label should be "Gain"
         break;
     case BMS_OFFSET:
-        m_bmsOffset->setText("Offset: " + QString::number(value));
+        m_bmsOffset->setText("Ctrl1: " + QString::number(value));    // Label should be "Offset"
         break;
     default:
         break;

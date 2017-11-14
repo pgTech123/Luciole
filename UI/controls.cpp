@@ -92,6 +92,12 @@ void Controls::on_pushButtonStb_clicked(bool)
     emit emergency(data);
 }
 
+void Controls::on_pushButtonRstEmergency_clicked(bool)
+{
+    QByteArray data = "S";
+    emit emergency(data);
+}
+
 // Piton run pour dire que le drone run, peut etre cache
 // Run = R
 // Cancel le mode run = T
