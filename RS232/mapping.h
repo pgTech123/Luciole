@@ -13,10 +13,9 @@
 
 #define BEGIN_KEY           0xAA
 #define END_KEY             0xBB
-#define UART_FRAME_LENGTH   49
+#define UART_FRAME_LENGTH   50
 
 
-#define VCC                 3.3
 #define RESOLUTION          (pow((double)2, 12) - 1)
 #define DRONE_VOLTAGE_GAIN  4.83
 
@@ -32,17 +31,18 @@
 struct Frame {
     float values[NUM_ITEMS_MONITORED];
     int errors[NUM_ITEMS_MONITORED];
+    unsigned char status;
 };
 
 
 struct UART_Frame {
     // Erreurs
     unsigned char errorCurrent;
-    unsigned char errorVoltage;
     unsigned char errorTemperature;
-    unsigned char errorReserved1;
-    unsigned char errorReserved2;
-    unsigned char errorReserved3;
+    unsigned char errorVoltage;
+    unsigned char errorBMS;
+    unsigned char vddHigh;
+    unsigned char vddLow;
 
     // Cellules
     unsigned char vCellPhoto_H;
@@ -94,6 +94,9 @@ struct UART_Frame {
     unsigned char tempLaser3_L;
     unsigned char tempLaser4_H;
     unsigned char tempLaser4_L;
+
+    //Status
+    unsigned char status;
 };
 
 
@@ -114,6 +117,8 @@ public:
 
 
 private:
+    void setVddMCU();
+
     bool containError(unsigned char err);
 
     uint16_t to16bits(unsigned char hi, unsigned lo);
@@ -139,6 +144,8 @@ private:
 
     UART_Frame m_uartFrame;
     bool m_frameReady;
+
+    double m_vddMCU;
 };
 
 #endif // MAPPING_H

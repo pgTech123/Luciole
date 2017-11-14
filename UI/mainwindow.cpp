@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Signals menu
     connect(ui->actionConnect, SIGNAL(triggered(bool)), this, SLOT(showConnectWidget()));
+    connect(ui->actionReset, SIGNAL(triggered(bool)), this, SLOT(showResetDialog()));
     connect(ui->actionClose, SIGNAL(triggered(bool)), this, SLOT(close()));
     connect(ui->actionSimulation, SIGNAL(triggered(bool)), this,SLOT(showSimulationWidget()));
     connect(ui->actionLogs, SIGNAL(triggered(bool)), this, SLOT(showLogWidget()));
@@ -67,7 +68,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Emergency
     connect(m_uiControls, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
+    connect(this, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
 
+    // Status
+    connect(m_rs232, SIGNAL(statusUpdate(unsigned char)), m_uiControls, SLOT(statusUpdate(unsigned char)));
 }
 
 MainWindow::~MainWindow()
@@ -106,6 +110,21 @@ void MainWindow::showConnectWidget()
         ));
     m_rs232->show();
     m_rs232->activateWindow();
+}
+
+void MainWindow::showResetDialog()
+{
+    // Display warning
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("Are you sure you want to go back in startup mode?");
+    //msgBox.setInformativeText("");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    int answer = msgBox.exec();
+    if(answer == QMessageBox::Yes) {
+        QByteArray data = "T";
+        emit emergency(data);
+    }
 }
 
 void MainWindow::showSimulationWidget()

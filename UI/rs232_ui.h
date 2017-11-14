@@ -26,6 +26,7 @@ public:
 signals:
     void valueChanged(int id, float value, bool simulated);
     void errorSent(int id, bool simulated);
+    void statusUpdate(unsigned char status);
 
 public slots:
     bool writeData(const QByteArray &writeData);

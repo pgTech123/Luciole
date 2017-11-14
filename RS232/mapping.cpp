@@ -1,4 +1,4 @@
-#include "mapping.h"
+﻿#include "mapping.h"
 
 Mapping::Mapping()
 {
@@ -80,8 +80,8 @@ Frame Mapping::readFrame()
     frame.values[BAT_CELL_BALANCING] = 0;   //TODO
     frame.values[BAT_LEVEL] = 100* (12.6-10.7) / (frame.values[BAT_TOT]-10.7);   // Maybe not best approx...  10.7V = 0%
 
-    frame.values[BMS_GAIN] = calibrateGain();
-    frame.values[BMS_OFFSET] = calibrateOffset();
+    frame.values[BMS_GAIN] = m_uartFrame.sysReg;// tmp  calibrateGain();
+    frame.values[BMS_OFFSET] = m_uartFrame.ctrl2Reg;// tmp  calibrateOffset();
 
     // Preset everything to 0.
     for(int i = 0; i < NUM_ITEMS_MONITORED; i++){
@@ -101,6 +101,8 @@ Frame Mapping::readFrame()
     frame.errors[TEMPERATURE_CELL3] = m_uartFrame.errorTemperature & 0x04 || m_uartFrame.errorTemperature & 0x40;
     frame.errors[TEMPERATURE_CELL4] = m_uartFrame.errorTemperature & 0x08 || m_uartFrame.errorTemperature & 0x80;
 
+    frame.status = m_uartFrame.status;
+
     return frame;
 }
 
@@ -110,11 +112,11 @@ void Mapping::doneReadingUartBuffer()
 
     // Errors
     m_uartFrame.errorCurrent = m_uartBuffer[0];
-    m_uartFrame.errorVoltage = m_uartBuffer[1];
-    m_uartFrame.errorTemperature = m_uartBuffer[2];
-    m_uartFrame.errorReserved1 = m_uartBuffer[3];
-    m_uartFrame.errorReserved2 = m_uartBuffer[4];
-    m_uartFrame.errorReserved3 = m_uartBuffer[5];
+    m_uartFrame.errorTemperature = m_uartBuffer[1];
+    m_uartFrame.errorVoltage = m_uartBuffer[2];
+    m_uartFrame.errorBMS = m_uartBuffer[3];
+    m_uartFrame.vddHigh = m_uartBuffer[4];
+    m_uartFrame.vddLow = m_uartBuffer[5];
 
     // Cellules
     m_uartFrame.vCellPhoto_H = m_uartBuffer[6];
@@ -167,9 +169,18 @@ void Mapping::doneReadingUartBuffer()
     m_uartFrame.tempLaser4_H = m_uartBuffer[47];
     m_uartFrame.tempLaser4_L = m_uartBuffer[48];
 
+    // Status
+    m_uartFrame.status = m_uartBuffer[49];
+
+    setVddMCU();
+
     m_frameReady = true;
 }
 
+void Mapping::setVddMCU()
+{
+    m_vddMCU = (double)to16bits(m_uartFrame.vddHigh, m_uartFrame.vddLow);
+}
 
 uint16_t Mapping::to16bits(unsigned char hi, unsigned lo)
 {
@@ -179,7 +190,7 @@ uint16_t Mapping::to16bits(unsigned char hi, unsigned lo)
 float Mapping::bytesToDroneVoltage(unsigned char hi, unsigned lo)
 {
     uint16_t value = to16bits(hi, lo);
-    float result = value * VCC / RESOLUTION;
+    float result = value * m_vddMCU / RESOLUTION;
     return result;
 }
 
@@ -201,7 +212,7 @@ float Mapping::bytesToDroneCurrent(unsigned char hi, unsigned lo)
 
 float Mapping::bytesToBMSCurrent(unsigned char hi, unsigned lo)
 {
-    uint16_t value = to16bits(hi, lo);
+    int16_t value = to16bits(hi, lo);
     float result = value * 0.00000844/0.005;
     return result;
 }
@@ -209,7 +220,7 @@ float Mapping::bytesToBMSCurrent(unsigned char hi, unsigned lo)
 float Mapping::bytesToDroneTemp(unsigned char hi, unsigned lo)
 {
     float voltage = bytesToDroneVoltage(hi, lo);
-    float rTherm = ((voltage/VCC) * R0_TERM) / (1- voltage/VCC);
+    float rTherm = ((voltage/m_vddMCU) * R0_TERM) / (1- voltage/m_vddMCU);
     float temperature = B_TERM_CELL/(log(rTherm/(R0_TERM*exp(-B_TERM_CELL/T_AMB))))-273;
     return temperature;
 }
@@ -227,7 +238,7 @@ float Mapping::bytesToBMSTemp(unsigned char hi, unsigned lo)
 float Mapping::bytesToLaserTemp(unsigned char hi, unsigned lo)
 {
     float voltage = bytesToDroneVoltage(hi, lo);
-    float rTherm = ((voltage/VCC) * R0_TERM) / (1- voltage/VCC);
+    float rTherm = ((voltage/m_vddMCU) * R0_TERM) / (1- voltage/m_vddMCU);
     float temperature = B_TERM_LASER/(log(rTherm/(R0_TERM*exp(-B_TERM_LASER/T_AMB))))-273;
     return temperature;
 }

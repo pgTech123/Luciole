@@ -87,6 +87,7 @@ void Rs232_ui::readData()
                 emit errorSent(i, false);
             }
         }
+        emit statusUpdate(frame.status);
     }
 }
 

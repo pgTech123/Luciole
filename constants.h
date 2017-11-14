@@ -36,6 +36,11 @@
 #define NUM_ITEMS_MONITORED 23
 
 
+#define RUN_MODE_BIT        0x01
+#define EMERGENCY_MODE_BIT  0x02
+
+
+
 const char*const ITEMS_MONITORED[NUM_ITEMS_MONITORED] = {
     "VOLTAGE_GLOBAL",
     "TEMPERATURE_CELL1",
@@ -59,7 +64,6 @@ const char*const ITEMS_MONITORED[NUM_ITEMS_MONITORED] = {
     "BAT_CELL_BALANCING",
     "BAT_LEVEL"
 };
-
 
 
 #endif // CONSTANTS_H

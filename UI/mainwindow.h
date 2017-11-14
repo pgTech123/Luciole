@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDesktopWidget>
+#include <QMessageBox>
 
 // Subwidgets
 #include "UI/controls.h"
@@ -32,15 +33,18 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void emergency(QByteArray);
+
 private:
     void setupSubWidgets();
 
 private slots:
     void showConnectWidget();
+    void showResetDialog();
     void showSimulationWidget();
     void showLogWidget();
     void showAboutUsWidget();
-
 
 private:
     Ui::MainWindow *ui;

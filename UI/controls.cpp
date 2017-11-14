@@ -8,7 +8,7 @@ Controls::Controls(QWidget *parent) :
     ui->setupUi(this);
     this->setLayout(ui->gridLayout);
 
-    connect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(unlock(bool)));
+    connect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(runMode(bool)));
 }
 
 Controls::~Controls()
@@ -28,6 +28,11 @@ void Controls::valueChanged(int, float, bool)
     // Unused
 }
 
+void Controls::statusUpdate(unsigned char status)
+{
+    ui->modeLabel->setText("Mode: " + QString::number(status));
+}
+
 void Controls::unlock(bool)
 {
     ui->pushButtonLock->setText("Lock");
@@ -44,8 +49,52 @@ void Controls::lock(bool)
     connect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(unlock(bool)));
 }
 
+void Controls::runMode(bool)
+{
+    QByteArray data = "R";
+    emit emergency(data);
+    lock(true);
+}
+
 void Controls::on_pushButtonEmergencyStop_clicked(bool)
 {
     QByteArray data = "E";
     emit emergency(data);
 }
+
+void Controls::on_pushButtonChg_clicked(bool)
+{
+    QByteArray data = "2";
+    emit emergency(data);
+}
+
+void Controls::on_pushButtonDsg_clicked(bool)
+{
+    QByteArray data = "3";
+    emit emergency(data);
+}
+
+void Controls::on_pushButtonChgDsg_clicked(bool)
+{
+    QByteArray data = "4";
+    emit emergency(data);
+}
+
+void Controls::on_pushButtonReset_clicked(bool)
+{
+    QByteArray data = "5";
+    emit emergency(data);
+}
+
+void Controls::on_pushButtonStb_clicked(bool)
+{
+    QByteArray data = "1";
+    emit emergency(data);
+}
+
+// Piton run pour dire que le drone run, peut etre cache
+// Run = R
+// Cancel le mode run = T
+
+// Cancel emergency stop = S
+//
