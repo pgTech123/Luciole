@@ -52,10 +52,10 @@ void Logs::openStreams()
     m_errorFile = new QFile(ERROR_LOG_FILENAME);
     m_debugFile = new QFile(DEBUG_LOG_FILENAME);
 
-    if ( m_errorFile->open(QIODevice::ReadWrite)) {
+    if ( m_errorFile->open(QIODevice::ReadWrite | QIODevice::Append)) {
         m_errorStream = new QTextStream(m_errorFile);
     }
-    if (m_debugFile->open(QIODevice::ReadWrite)) {
+    if (m_debugFile->open(QIODevice::ReadWrite | QIODevice::Append)) {
         m_debugStream = new QTextStream(m_debugFile);
     }
     this->writeTags();
