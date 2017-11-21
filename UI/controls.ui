@@ -22,15 +22,15 @@
      <height>271</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0">
-    <item row="2" column="1">
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0">
+    <item row="2" column="2">
      <widget class="QPushButton" name="pushButtonChgDsg">
       <property name="text">
        <string>Charge/Discharge</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="1" column="1">
      <widget class="QPushButton" name="pushButtonEmergencyStop">
       <property name="enabled">
        <bool>true</bool>
@@ -52,21 +52,21 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="3" column="2">
      <widget class="QPushButton" name="pushButtonDsg">
       <property name="text">
        <string>Discharge</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="4" column="1">
      <widget class="QPushButton" name="pushButtonReset">
       <property name="text">
        <string>Reset System</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="1" column="2">
      <widget class="QPushButton" name="pushButtonLock">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
@@ -85,24 +85,24 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="3" column="1">
      <widget class="QPushButton" name="pushButtonChg">
       <property name="text">
        <string>Charge</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="2" column="1">
      <widget class="QPushButton" name="pushButtonStb">
       <property name="text">
        <string>BMS Standby</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="5" column="1">
      <widget class="QLabel" name="modeLabel">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -112,12 +112,40 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="4" column="2">
      <widget class="QPushButton" name="pushButtonRstEmergency">
       <property name="text">
        <string>Reset Emergency</string>
       </property>
      </widget>
+    </item>
+    <item row="7" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButtonUp">
+        <property name="text">
+         <string>Up</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonDown">
+        <property name="text">
+         <string>Down</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="7" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLCDNumber" name="lcdNumberVoltage"/>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

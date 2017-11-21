@@ -23,9 +23,15 @@ void Controls::error(int, bool)
     }
 }
 
-void Controls::valueChanged(int, float, bool)
+void Controls::valueChanged(int id, float value, bool)
 {
-    // Unused
+    switch (id) {
+    case POWER_SUPPLY_VOLTAGE:
+        ui->lcdNumberVoltage->display(value);
+        break;
+    default:
+        break;
+    }
 }
 
 void Controls::statusUpdate(unsigned char status)
@@ -98,9 +104,14 @@ void Controls::on_pushButtonRstEmergency_clicked(bool)
     emit emergency(data);
 }
 
-// Piton run pour dire que le drone run, peut etre cache
-// Run = R
-// Cancel le mode run = T
+void Controls::on_pushButtonUp_clicked(bool)
+{
+    QByteArray data = "+";
+    emit emergency(data);
+}
 
-// Cancel emergency stop = S
-//
+void Controls::on_pushButtonDown_clicked(bool)
+{
+    QByteArray data = "-";
+    emit emergency(data);
+}

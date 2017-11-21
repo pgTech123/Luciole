@@ -99,6 +99,8 @@ struct UART_Frame {
 
     //Status
     unsigned char status;
+
+    // TODO: Voltage from power supply
 };
 
 

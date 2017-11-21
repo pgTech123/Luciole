@@ -172,6 +172,8 @@ void Mapping::doneReadingUartBuffer()
     // Status
     m_uartFrame.status = m_uartBuffer[49];
 
+    // TODO: Voltage from power supply
+
     setVddMCU();
 
     m_frameReady = true;

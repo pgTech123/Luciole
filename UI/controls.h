@@ -2,6 +2,7 @@
 #define CONTROLS_H
 
 #include <QWidget>
+#include "constants.h"
 
 namespace Ui {
 class Controls;
@@ -35,6 +36,8 @@ private slots:
     void on_pushButtonChgDsg_clicked(bool);
     void on_pushButtonReset_clicked(bool);
     void on_pushButtonStb_clicked(bool);
+    void on_pushButtonUp_clicked(bool);
+    void on_pushButtonDown_clicked(bool);
 
 
 private:

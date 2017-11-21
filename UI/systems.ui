@@ -13,13 +13,13 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>50</y>
-     <width>160</width>
-     <height>80</height>
+     <x>90</x>
+     <y>40</y>
+     <width>209</width>
+     <height>209</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout"/>

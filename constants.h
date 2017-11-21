@@ -33,7 +33,10 @@
 #define BMS_OFFSET          21
 #define BMS_GAIN            22
 
-#define NUM_ITEMS_MONITORED 23
+#define POWER_SUPPLY_VOLTAGE    23
+#define POWER_SUPPLY_CURRENT    24
+
+#define NUM_ITEMS_MONITORED 25
 
 
 #define RUN_MODE_BIT        0x01
@@ -62,7 +65,9 @@ const char*const ITEMS_MONITORED[NUM_ITEMS_MONITORED] = {
     "BAT_CURRENT",
     "BAT_TEMPERATURE",
     "BAT_CELL_BALANCING",
-    "BAT_LEVEL"
+    "BAT_LEVEL",
+    "POWER_SUPPLY_VOLTAGE",
+    "POWER_SUPPLY_CURRENT"
 };
 
 
