@@ -36,8 +36,12 @@ private slots:
     void on_pushButtonChgDsg_clicked(bool);
     void on_pushButtonReset_clicked(bool);
     void on_pushButtonStb_clicked(bool);
-    void on_pushButtonUp_clicked(bool);
-    void on_pushButtonDown_clicked(bool);
+    void on_pushButtonVoltageDown_clicked(bool);
+    void on_pushButtonVoltageUp_clicked(bool);
+    void on_pushButtonCurrentUp_clicked(bool);
+    void on_pushButtonCurrentDown_clicked(bool);
+
+
 
 
 private:

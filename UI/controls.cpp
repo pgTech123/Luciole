@@ -29,6 +29,9 @@ void Controls::valueChanged(int id, float value, bool)
     case POWER_SUPPLY_VOLTAGE:
         ui->lcdNumberVoltage->display(value);
         break;
+    case POWER_SUPPLY_CURRENT:
+        ui->lcdNumberCurrent->display(value);
+        break;
     default:
         break;
     }
@@ -104,14 +107,25 @@ void Controls::on_pushButtonRstEmergency_clicked(bool)
     emit emergency(data);
 }
 
-void Controls::on_pushButtonUp_clicked(bool)
+void Controls::on_pushButtonVoltageUp_clicked(bool)
 {
     QByteArray data = "+";
     emit emergency(data);
 }
 
-void Controls::on_pushButtonDown_clicked(bool)
+void Controls::on_pushButtonVoltageDown_clicked(bool)
 {
     QByteArray data = "-";
+    emit emergency(data);
+}
+void Controls::on_pushButtonCurrentUp_clicked(bool)
+{
+    QByteArray data = "P";
+    emit emergency(data);
+}
+
+void Controls::on_pushButtonCurrentDown_clicked(bool)
+{
+    QByteArray data = "M";
     emit emergency(data);
 }

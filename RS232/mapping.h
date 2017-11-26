@@ -13,7 +13,7 @@
 
 #define BEGIN_KEY           0xAA
 #define END_KEY             0xBB
-#define UART_FRAME_LENGTH   50
+#define UART_FRAME_LENGTH   54
 
 #define VDD_MCU_BASE_STATION    3.315
 
@@ -100,7 +100,13 @@ struct UART_Frame {
     //Status
     unsigned char status;
 
-    // TODO: Voltage from power supply
+    //Voltage from power supply
+    unsigned char voltageSupply_H;
+    unsigned char voltageSupply_L;
+    //Current from power supply
+    unsigned char currentSupply_H;
+    unsigned char currentSupply_L;
+
 };
 
 

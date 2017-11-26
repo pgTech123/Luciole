@@ -83,6 +83,8 @@ Frame Mapping::readFrame()
     frame.values[BMS_GAIN] = m_uartFrame.sysReg; //calibrateGain();
     frame.values[BMS_OFFSET] = m_uartFrame.ctrl1Reg; //calibrateOffset();
 
+    frame.values[POWER_SUPPLY_VOLTAGE] = ((float)to16bits(m_uartFrame.voltageSupply_H,m_uartFrame.voltageSupply_L))/1000;
+    frame.values[POWER_SUPPLY_CURRENT] = ((float)to16bits(m_uartFrame.currentSupply_H,m_uartFrame.currentSupply_L))/1000;
     // Preset everything to 0.
     for(int i = 0; i < NUM_ITEMS_MONITORED; i++){
         frame.errors[i] = 0;
@@ -172,7 +174,11 @@ void Mapping::doneReadingUartBuffer()
     // Status
     m_uartFrame.status = m_uartBuffer[49];
 
-    // TODO: Voltage from power supply
+    //Voltage from power supply
+    m_uartFrame.voltageSupply_H = m_uartBuffer[50];
+    m_uartFrame.voltageSupply_L = m_uartBuffer[51];
+    m_uartFrame.currentSupply_H = m_uartBuffer[52];
+    m_uartFrame.currentSupply_L = m_uartBuffer[53];
 
     setVddMCU();
 
