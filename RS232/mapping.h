@@ -13,13 +13,13 @@
 
 #define BEGIN_KEY           0xAA
 #define END_KEY             0xBB
-#define UART_FRAME_LENGTH   54
+#define UART_FRAME_LENGTH   58
 
 #define VDD_MCU_BASE_STATION    3.315
 
 
 #define RESOLUTION          (pow((double)2, 12) - 1)
-#define DRONE_VOLTAGE_GAIN  4.83
+#define DRONE_VOLTAGE_GAIN  4.87
 
 #define B_TERM_LASER        3478.0
 #define B_TERM_CELL         3470.0
@@ -27,8 +27,8 @@
 #define T_AMB               298.0
 #define R0_TERM             10000.0
 
-#define RSENSE_CELL         0.002
-#define RCUR                499000.0
+#define RSENSE_CELL         0.025
+#define RCUR                100000.0
 
 struct Frame {
     float values[NUM_ITEMS_MONITORED];
@@ -103,9 +103,13 @@ struct UART_Frame {
     //Voltage from power supply
     unsigned char voltageSupply_H;
     unsigned char voltageSupply_L;
+    unsigned char measuredvoltageSupply_H;
+    unsigned char measuredvoltageSupply_L;
     //Current from power supply
     unsigned char currentSupply_H;
     unsigned char currentSupply_L;
+    unsigned char measuredcurrentSupply_H;
+    unsigned char measuredcurrentSupply_L;
 
 };
 

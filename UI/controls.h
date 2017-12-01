@@ -40,7 +40,8 @@ private slots:
     void on_pushButtonVoltageUp_clicked(bool);
     void on_pushButtonCurrentUp_clicked(bool);
     void on_pushButtonCurrentDown_clicked(bool);
-
+    void on_pushButtonChangeSupplyCommState_clicked(bool);
+    void on_pushButtonChangeSupplyOutputState_clicked(bool);
 
 
 

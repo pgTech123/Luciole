@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>894</width>
-    <height>636</height>
+    <width>648</width>
+    <height>889</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,64 +17,38 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>10</y>
-      <width>801</width>
-      <height>451</height>
+      <width>631</width>
+      <height>821</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="2">
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Minimum</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>10</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="3" column="1">
-      <widget class="QGroupBox" name="groupBoxControls">
+     <item row="1" column="1">
+      <widget class="QGroupBox" name="groupBoxLaser">
        <property name="title">
-        <string>Controls</string>
+        <string>Lasers</string>
        </property>
-       <widget class="QWidget" name="verticalLayoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>50</y>
-          <width>160</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutControls"/>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutLaser"/>
+        </item>
+       </layout>
       </widget>
      </item>
-     <item row="3" column="2">
-      <spacer name="verticalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="groupBoxSystems">
+       <property name="title">
+        <string>Systems</string>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Minimum</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>150</height>
-        </size>
-       </property>
-      </spacer>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutSystems"/>
+        </item>
+       </layout>
+      </widget>
      </item>
-     <item row="4" column="3">
+     <item row="5" column="3">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -90,7 +64,7 @@
        </property>
       </spacer>
      </item>
-     <item row="2" column="2">
+     <item row="1" column="2">
       <spacer name="verticalSpacer_4">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -102,6 +76,90 @@
         <size>
          <width>20</width>
          <height>150</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="2">
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>150</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="3" rowspan="5">
+      <widget class="QGroupBox" name="groupBoxDrone">
+       <property name="title">
+        <string>Drone</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutDrone"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="5" column="4">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="1" rowspan="3">
+      <widget class="QGroupBox" name="groupBoxControls">
+       <property name="title">
+        <string>Controls</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutControls"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="4" rowspan="5">
+      <widget class="QGroupBox" name="groupBoxBattery">
+       <property name="title">
+        <string>Battery</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="verticalLayoutBattery"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
@@ -122,92 +180,7 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="3" rowspan="5">
-      <widget class="QGroupBox" name="groupBoxDrone">
-       <property name="title">
-        <string>Drone</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>211</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutDrone"/>
-       </widget>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QGroupBox" name="groupBoxSystems">
-       <property name="title">
-        <string>Systems</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>60</y>
-          <width>160</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutSystems"/>
-       </widget>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="1">
-      <widget class="QGroupBox" name="groupBoxLaser">
-       <property name="title">
-        <string>Lasers</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget_4">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>40</y>
-          <width>160</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutLaser"/>
-       </widget>
-      </widget>
-     </item>
-     <item row="0" column="4" rowspan="5">
-      <widget class="QGroupBox" name="groupBoxBattery">
-       <property name="title">
-        <string>Battery</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget_5">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>211</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutBattery"/>
-       </widget>
-      </widget>
-     </item>
-     <item row="4" column="4">
+     <item row="5" column="1">
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -228,8 +201,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>894</width>
-     <height>22</height>
+     <width>648</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

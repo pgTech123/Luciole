@@ -37,10 +37,19 @@ private:
     ValueElement *m_currentCell3;
     ValueElement *m_currentCell4;
 
-    ValueElement *m_powerCell1;
+    ValueElement *m_efficiencyCell1;
+    ValueElement *m_efficiencyCell2;
+    ValueElement *m_efficiencyCell3;
+    ValueElement *m_efficiencyCell4;
+
+
+    /*ValueElement *m_powerCell1;
     ValueElement *m_powerCell2;
     ValueElement *m_powerCell3;
-    ValueElement *m_powerCell4;
+    ValueElement *m_powerCell4;*/
+
+    float m_currentBat;
+
 };
 
 #endif // DRONE_H
