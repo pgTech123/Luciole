@@ -11,6 +11,7 @@
 #include "UI/laser.h"
 #include "UI/systems.h"
 #include "UI/battery.h"
+#include "UI/supplycontrol.h"
 
 // Menu widgets
 #include "UI/aboutus.h"
@@ -54,6 +55,7 @@ private:
     Drone *m_uiDrone;
     Laser *m_uiLaser;
     Systems *m_uiSystems;
+    SupplyControl *m_uiSupplyControl;
 
     AboutUs *m_aboutUs;
     Rs232_ui *m_rs232;

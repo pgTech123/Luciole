@@ -23,24 +23,9 @@ void Controls::error(int, bool)
     }
 }
 
-void Controls::valueChanged(int id, float value, bool)
+void Controls::valueChanged(int, float, bool)
 {
-    switch (id) {
-    case POWER_SUPPLY_VOLTAGE_MEASURED:
-        ui->lcdNumberVoltage->display(value);
-        break;
-    case POWER_SUPPLY_CURRENT_MEASURED:
-        ui->lcdNumberCurrent->display(value);
-        break;
-    case POWER_SUPPLY_VOLTAGE:
-        ui->VoltageLabel->setText("Voltage Programmé: " + QString::number(value));
-        break;
-    case POWER_SUPPLY_CURRENT:
-        ui->CurrentLabel->setText("Courant Programmé: " + QString::number(value));
-        break;
-    default:
-        break;
-    }
+
 }
 
 void Controls::statusUpdate(unsigned char status)
@@ -110,41 +95,6 @@ void Controls::on_pushButtonStb_clicked(bool)
 void Controls::on_pushButtonRstEmergency_clicked(bool)
 {
     QByteArray data = "S";
-    emit emergency(data);
-}
-
-void Controls::on_pushButtonVoltageUp_clicked(bool)
-{
-    QByteArray data = "+";
-    emit emergency(data);
-}
-
-void Controls::on_pushButtonVoltageDown_clicked(bool)
-{
-    QByteArray data = "-";
-    emit emergency(data);
-}
-void Controls::on_pushButtonCurrentUp_clicked(bool)
-{
-    QByteArray data = "P";
-    emit emergency(data);
-}
-
-void Controls::on_pushButtonCurrentDown_clicked(bool)
-{
-    QByteArray data = "M";
-    emit emergency(data);
-}
-
-void Controls::on_pushButtonChangeSupplyCommState_clicked(bool)
-{
-    QByteArray data = "Q";
-    emit emergency(data);
-}
-
-void Controls::on_pushButtonChangeSupplyOutputState_clicked(bool)
-{
-    QByteArray data = "W";
     emit emergency(data);
 }
 

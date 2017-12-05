@@ -11,7 +11,7 @@
 #include <QPushButton>
 
 #define FLASHING_TIME_MS    150
-#define IMG_RATIO           0.70
+#define IMG_RATIO           0.60
 
 #define OPACITY_LOW         0.1
 #define OPACITY_HIGH        0.7

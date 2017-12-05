@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_uiDrone = new Drone(this);
     m_uiLaser = new Laser(this);
     m_uiSystems = new Systems(this);
+    m_uiSupplyControl = new SupplyControl(this);
 
     // Menu Widgets
     m_aboutUs = new AboutUs();
@@ -41,24 +42,28 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiDrone, SLOT(error(int,bool)));
     connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiLaser, SLOT(error(int,bool)));
     connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiSystems, SLOT(error(int,bool)));
+    connect(m_simulation, SIGNAL(errorSent(int,bool)), m_uiSupplyControl, SLOT(error(int,bool)));
 
     connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiBattery, SLOT(valueChanged(int,float,bool)));
     connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiControls, SLOT(valueChanged(int,float,bool)));
     connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiDrone, SLOT(valueChanged(int,float,bool)));
     connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiLaser, SLOT(valueChanged(int,float,bool)));
     connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiSystems, SLOT(valueChanged(int,float,bool)));
+    connect(m_simulation, SIGNAL(valueChanged(int,float,bool)), m_uiSupplyControl, SLOT(valueChanged(int,float,bool)));
 
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiBattery, SLOT(error(int,bool)));
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiControls, SLOT(error(int,bool)));
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiDrone, SLOT(error(int,bool)));
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiLaser, SLOT(error(int,bool)));
     connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiSystems, SLOT(error(int,bool)));
+    connect(m_rs232, SIGNAL(errorSent(int,bool)), m_uiSupplyControl, SLOT(error(int,bool)));
 
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiBattery, SLOT(valueChanged(int,float,bool)));
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiControls, SLOT(valueChanged(int,float,bool)));
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiDrone, SLOT(valueChanged(int,float,bool)));
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiLaser, SLOT(valueChanged(int,float,bool)));
     connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiSystems, SLOT(valueChanged(int,float,bool)));
+    connect(m_rs232, SIGNAL(valueChanged(int,float,bool)), m_uiSupplyControl, SLOT(valueChanged(int,float,bool)));
 
     // Logs
     connect(m_simulation, SIGNAL(errorSent(int,bool)), m_logs, SLOT(logError(int,bool)));
@@ -68,6 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Emergency
     connect(m_uiControls, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
+    connect(m_uiSupplyControl, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
     connect(this, SIGNAL(emergency(QByteArray)), m_rs232, SLOT(writeData(QByteArray)));
 
     // Status
@@ -91,12 +97,14 @@ void MainWindow::setupSubWidgets()
     ui->verticalLayoutDrone->addWidget(m_uiDrone);
     ui->verticalLayoutLaser->addWidget(m_uiLaser);
     ui->verticalLayoutSystems->addWidget(m_uiSystems);
+    ui->verticalLayoutHMP->addWidget(m_uiSupplyControl);
 
-    ui->groupBoxBattery->setLayout(ui->verticalLayoutBattery);
+   /* ui->groupBoxBattery->setLayout(ui->verticalLayoutBattery);
     ui->groupBoxControls->setLayout(ui->verticalLayoutControls);
     ui->groupBoxDrone->setLayout(ui->verticalLayoutDrone);
     ui->groupBoxLaser->setLayout(ui->verticalLayoutLaser);
-    ui->groupBoxSystems->setLayout(ui->verticalLayoutSystems);
+    ui->groupBoxSystems->setLayout(ui->verticalLayoutSystems);*/
+    ui->groupBoxHMP->setLayout(ui->verticalLayoutHMP);
 }
 
 void MainWindow::showConnectWidget()

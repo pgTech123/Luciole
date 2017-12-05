@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>345</height>
+    <width>424</width>
+    <height>196</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,15 +18,34 @@
     <rect>
      <x>0</x>
      <y>20</y>
-     <width>402</width>
-     <height>331</height>
+     <width>411</width>
+     <height>161</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0,0,0,0">
-    <item row="4" column="1">
-     <widget class="QPushButton" name="pushButtonReset">
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0">
+    <item row="1" column="2">
+     <widget class="QPushButton" name="pushButtonLock">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
       <property name="text">
-       <string>Reset System</string>
+       <string>Run</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButtonStb">
+      <property name="text">
+       <string>BMS Standby</string>
       </property>
      </widget>
     </item>
@@ -52,10 +71,30 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="modeLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Mode</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="2">
      <widget class="QPushButton" name="pushButtonChgDsg">
       <property name="text">
        <string>Charge/Discharge</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButtonReset">
+      <property name="text">
+       <string>Reset System</string>
       </property>
      </widget>
     </item>
@@ -73,143 +112,10 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="pushButtonStb">
-      <property name="text">
-       <string>BMS Standby</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="1">
      <widget class="QPushButton" name="pushButtonChg">
       <property name="text">
        <string>Charge</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="pushButtonLock">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Run</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLCDNumber" name="lcdNumberCurrent"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButtonCurrentUp">
-          <property name="text">
-           <string>Current Up</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonCurrentDown">
-          <property name="text">
-           <string>Current Down</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="modeLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Mode</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLabel" name="VoltageLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Voltage programmée : </string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLCDNumber" name="lcdNumberVoltage"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QPushButton" name="pushButtonVoltageUp">
-          <property name="text">
-           <string>Voltage Up</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonVoltageDown">
-          <property name="text">
-           <string>Votlage Down</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="8" column="2">
-     <widget class="QLabel" name="CurrentLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Courant Programmée :</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QPushButton" name="pushButtonChangeSupplyCommState">
-        <property name="text">
-         <string>Activate/Deactivate Supply communication</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="7" column="2">
-     <widget class="QPushButton" name="pushButtonChangeSupplyOutputState">
-      <property name="text">
-       <string>Activate/Deactivate Supply Output</string>
       </property>
      </widget>
     </item>
