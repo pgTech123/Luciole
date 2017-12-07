@@ -266,7 +266,17 @@ float Mapping::bytesToLaserTemp(unsigned char hi, unsigned lo)
 
     uint16_t value = to16bits(hi, lo);
     float voltage = value*VDD_MCU_BASE_STATION/RESOLUTION;
-    float rTherm = ((voltage/VDD_MCU_BASE_STATION) * R0_TERM) / (1- voltage/VDD_MCU_BASE_STATION);
+
+    float rTherm = 0;
+
+    if(value == RESOLUTION)
+    {
+        rTherm = 0;
+    }
+    else
+    {
+        rTherm = ((voltage/VDD_MCU_BASE_STATION) * R0_TERM) / (1- voltage/VDD_MCU_BASE_STATION);
+    }
     float temperature = B_TERM_LASER/(log(rTherm/(R0_TERM*exp(-B_TERM_LASER/T_AMB))))-273;
     return temperature;
 }
