@@ -9,6 +9,9 @@
 
 #define FLASH_MS    500
 
+#define RESET_BY_TIMER  true
+#define RESET_TIME      2000    // ms
+
 /**
  * @brief The AlarmElement class is an abstract class that manages
  * ui and sound elements associated with an alarm. This class should
@@ -50,6 +53,7 @@ private:
     bool m_alarmOn;
     bool m_backgroundColorState;
     QTimer *m_flashTimer;
+    QTimer *m_resetTimer;
 };
 
 #endif // ALARMELEMENT_H

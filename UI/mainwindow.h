@@ -12,6 +12,7 @@
 #include "UI/systems.h"
 #include "UI/battery.h"
 #include "UI/supplycontrol.h"
+#include "UI/status.h"
 
 // Menu widgets
 #include "UI/aboutus.h"
@@ -56,6 +57,7 @@ private:
     Laser *m_uiLaser;
     Systems *m_uiSystems;
     SupplyControl *m_uiSupplyControl;
+    Status *m_uiStatus;
 
     AboutUs *m_aboutUs;
     Rs232_ui *m_rs232;

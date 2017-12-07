@@ -2,6 +2,7 @@
 #define SYSTEMS_H
 
 #include <constants.h>
+#include <UI/alarmelement.h>
 
 #include <QTimer>
 #include <QWidget>
@@ -11,7 +12,7 @@
 #include <QPushButton>
 
 #define FLASHING_TIME_MS    150
-#define IMG_RATIO           0.60
+#define IMG_RATIO           0.70
 
 #define OPACITY_LOW         0.1
 #define OPACITY_HIGH        0.7
@@ -53,6 +54,7 @@ private:
     QPushButton *m_clearButton;
 
     QTimer *m_timer;
+    QTimer *m_resetTimer;
 
     QGraphicsEllipseItem *m_flashCell1;
     QGraphicsEllipseItem *m_flashCell2;
