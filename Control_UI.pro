@@ -41,7 +41,8 @@ SOURCES += \
     logs.cpp \
     UI/graphbarelement.cpp \
     RS232/mapping.cpp \
-    UI/supplycontrol.cpp
+    UI/supplycontrol.cpp \
+    UI/status.cpp
 
 HEADERS += \
         UI/mainwindow.h \
@@ -61,7 +62,8 @@ HEADERS += \
     logs.h \
     UI/graphbarelement.h \
     RS232/mapping.h \
-    UI/supplycontrol.h
+    UI/supplycontrol.h \
+    UI/status.h
 
 FORMS += \
         UI/mainwindow.ui \
@@ -74,7 +76,8 @@ FORMS += \
     UI/simulationdialog.ui \
     UI/logdialog.ui \
     UI/battery.ui \
-    UI/supplycontrol.ui
+    UI/supplycontrol.ui \
+    UI/status.ui
 
 RESOURCES += \
     ressources.qrc

@@ -10,17 +10,25 @@ Systems::Systems(QWidget *parent) :
     m_timer = new QTimer(this);
     m_view = new QGraphicsView(this);
     m_scene = new QGraphicsScene(this);
-    m_clearButton = new QPushButton("Clear", this);
+
     m_view->setScene(m_scene);
     this->setupScene();
 
     ui->verticalLayout->addWidget(m_view);
-    ui->verticalLayout->addWidget(m_clearButton);
+
+    if(!RESET_BY_TIMER) {
+        m_clearButton = new QPushButton("Clear", this);
+        ui->verticalLayout->addWidget(m_clearButton);
+        connect(m_clearButton, SIGNAL(clicked(bool)), this, SLOT(clearErrors()));
+    }
+    else {
+        m_resetTimer = new QTimer();
+        connect(m_resetTimer, SIGNAL(timeout()), this, SLOT(clearErrors()));
+    }
     this->setLayout(ui->verticalLayout);
 
     m_timer->start(FLASHING_TIME_MS);
 
-    connect(m_clearButton, SIGNAL(clicked(bool)), this, SLOT(clearErrors()));
     connect(m_timer, SIGNAL(timeout()), this, SLOT(updateScene()));
 
     this->clearErrors();
@@ -31,8 +39,12 @@ Systems::~Systems()
     delete ui;
 }
 
-void Systems::error(int id, bool simulated)
+void Systems::error(int id, bool)
 {
+    if(RESET_BY_TIMER) {
+        m_resetTimer->start(RESET_TIME);
+    }
+
     if (id >= TEMPERATURE_CELL1 && id <= TEMPERATURE_CELL4 ) {
         flashCells(id-TEMPERATURE_CELL1);
     }

@@ -10,7 +10,13 @@ AlarmElement::AlarmElement(QWidget *parent, bool vertical) : QWidget(parent)
         this->setFixedHeight(45);
     }
     m_itemName = new QLabel(this);
-    m_clearButton = new QPushButton(this);
+
+    if(RESET_BY_TIMER) {
+        m_resetTimer = new QTimer();
+        connect(m_resetTimer, SIGNAL(timeout()), this, SLOT(clearAlarm()));
+    } else {
+        m_clearButton = new QPushButton(this);
+    }
 
     m_backgroundColorState = false;
     m_flashTimer = new QTimer(this);
@@ -26,17 +32,23 @@ AlarmElement::AlarmElement(QWidget *parent, bool vertical) : QWidget(parent)
 void AlarmElement::setup(QString name, QWidget *widget)
 {
     m_itemName->setText(name);
-    m_clearButton->setText("Clear");
 
     m_layout->addWidget(m_itemName);
     m_layout->addWidget(widget);
-    m_layout->addWidget(m_clearButton);
 
-    connect(m_clearButton, SIGNAL(clicked(bool)), this, SLOT(clearAlarm()));
+    if(!RESET_BY_TIMER) {
+        m_clearButton->setText("Clear");
+        m_layout->addWidget(m_clearButton);
+        connect(m_clearButton, SIGNAL(clicked(bool)), this, SLOT(clearAlarm()));
+    }
 }
 
 void AlarmElement::triggerAlarm(bool)
 {
+    if(RESET_BY_TIMER) {
+        m_resetTimer->start(RESET_TIME);
+    }
+
     m_alarmOn = true;
     setBackgroundColorToRed();
 }

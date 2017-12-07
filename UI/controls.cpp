@@ -30,7 +30,17 @@ void Controls::valueChanged(int, float, bool)
 
 void Controls::statusUpdate(unsigned char status)
 {
-    ui->modeLabel->setText("Mode: " + QString::number(status));
+    // FIXME: Not tested...
+    if (!(status & 0x01)) {
+        if (ui->pushButtonLock->text() == "Unlock") {
+            disconnect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(unlock(bool)));
+        } else if (ui->pushButtonLock->text() == "Lock") {
+            disconnect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(lock(bool)));
+        }
+
+        ui->pushButtonLock->setText("Run");
+        connect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(runMode(bool)));
+    }
 }
 
 void Controls::unlock(bool)
