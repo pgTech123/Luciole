@@ -48,50 +48,47 @@ void SupplyControl::valueChanged(int id, float value, bool)
 
 void SupplyControl::on_pushButtonVoltageUp_clicked(bool)
 {
-    m_voltageWantedValue += ui->doubleSpinBoxVoltageStep->value();
+   /* m_voltageWantedValue += ui->doubleSpinBoxVoltageStep->value();
     if (m_voltageWantedValue > MAX_VOLTAGE){
         m_voltageWantedValue = MAX_VOLTAGE;
     }
     ui->lcdNumberVoltage->display(m_voltageWantedValue);
     QString cmd = "Volt: " + QString::number(m_voltageWantedValue);
-    QByteArray data = cmd.toLocal8Bit();
+    QByteArray data = cmd.toLocal8Bit();*/
 
+    QByteArray data = "H+0000";
     emit emergency(data);
 }
 
 void SupplyControl::on_pushButtonVoltageDown_clicked(bool)
 {
-    m_voltageWantedValue -= ui->doubleSpinBoxVoltageStep->value();
-    if (m_voltageWantedValue < MIN_VOLTAGE){
-        m_voltageWantedValue = MIN_VOLTAGE;
-    }
-    ui->lcdNumberVoltage->display(m_voltageWantedValue);
-    QString cmd = "Volt: " + QString::number(m_voltageWantedValue);
+    QByteArray data = "H-0000";
+    emit emergency(data);
+}
+
+void SupplyControl::on_doubleSpinBoxVoltageStep_valueChanged(double)
+{
+    QString cmd = "HV" + QString::number(ui->doubleSpinBoxVoltageStep->value()).leftJustified(4,'0');
     QByteArray data = cmd.toLocal8Bit();
 
     emit emergency(data);
 }
+
 void SupplyControl::on_pushButtonCurrentUp_clicked(bool)
 {
-    m_currentWantedValue += ui->doubleSpinBoxCurrentStep->value();
-    if (m_currentWantedValue > MAX_CURRENT){
-        m_currentWantedValue = MAX_CURRENT;
-    }
-    ui->lcdNumberCurrent->display(m_currentWantedValue);
-    QString cmd = "Cur: " + QString::number(m_currentWantedValue);
-    QByteArray data = cmd.toLocal8Bit();
-
+    QByteArray data = "HP0000";
     emit emergency(data);
 }
 
 void SupplyControl::on_pushButtonCurrentDown_clicked(bool)
 {
-    m_currentWantedValue -= ui->doubleSpinBoxCurrentStep->value();
-    if (m_currentWantedValue < MIN_CURRENT){
-        m_currentWantedValue = MIN_CURRENT;
-    }
-    ui->lcdNumberCurrent->display(m_currentWantedValue);
-    QString cmd = "Cur: " + QString::number(m_currentWantedValue);
+    QByteArray data = "HM0000";
+    emit emergency(data);
+}
+
+void SupplyControl::on_doubleSpinBoxCurrentStep_valueChanged(double)
+{
+    QString cmd = "HC" + QString::number(ui->doubleSpinBoxCurrentStep->value()).leftJustified(4,'0');
     QByteArray data = cmd.toLocal8Bit();
 
     emit emergency(data);
@@ -99,12 +96,12 @@ void SupplyControl::on_pushButtonCurrentDown_clicked(bool)
 
 void SupplyControl::on_pushButtonChangeSupplyCommState_clicked(bool)
 {
-    QByteArray data = "Q";
+    QByteArray data = "HQ0000";
     emit emergency(data);
 }
 
 void SupplyControl::on_pushButtonChangeSupplyOutputState_clicked(bool)
 {
-    QByteArray data = "W";
+    QByteArray data = "HW0000";
     emit emergency(data);
 }

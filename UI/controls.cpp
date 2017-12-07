@@ -51,50 +51,50 @@ void Controls::lock(bool)
 
 void Controls::runMode(bool)
 {
-    QByteArray data = "R";
+    QByteArray data = "R10000";
     emit emergency(data);
     lock(true);
 }
 
 void Controls::on_pushButtonEmergencyStop_clicked(bool)
 {
-    QByteArray data = "E";
+    QByteArray data = "E10000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonChg_clicked(bool)
 {
-    QByteArray data = "2";
+    QByteArray data = "B20000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonDsg_clicked(bool)
 {
-    QByteArray data = "3";
+    QByteArray data = "B30000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonChgDsg_clicked(bool)
 {
-    QByteArray data = "4";
+    QByteArray data = "B40000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonReset_clicked(bool)
 {
-    QByteArray data = "5";
+    QByteArray data = "B50000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonStb_clicked(bool)
 {
-    QByteArray data = "1";
+    QByteArray data = "B10000";
     emit emergency(data);
 }
 
 void Controls::on_pushButtonRstEmergency_clicked(bool)
 {
-    QByteArray data = "S";
+    QByteArray data = "E00000";
     emit emergency(data);
 }
 

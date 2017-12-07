@@ -52,7 +52,7 @@ void Rs232_ui::refreshUI()
     ui->comboBoxBaudRate->addItem(QString::number(QSerialPort::Baud38400));
     ui->comboBoxBaudRate->addItem(QString::number(QSerialPort::Baud57600));
     ui->comboBoxBaudRate->addItem(QString::number(QSerialPort::Baud115200));
-    ui->comboBoxBaudRate->setCurrentIndex(5);
+    ui->comboBoxBaudRate->setCurrentIndex(7);
 }
 
 bool Rs232_ui::tryConnection()
