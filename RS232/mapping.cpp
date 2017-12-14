@@ -106,6 +106,11 @@ Frame Mapping::readFrame()
     frame.errors[TEMPERATURE_CELL3] = m_uartFrame.errorTemperature & 0x04 || m_uartFrame.errorTemperature & 0x40;
     frame.errors[TEMPERATURE_CELL4] = m_uartFrame.errorTemperature & 0x08 || m_uartFrame.errorTemperature & 0x80;
 
+    frame.errors[TEMPERATURE_LASER1] = m_uartFrame.errorLaser & 0x01 || m_uartFrame.errorLaser & 0x10;
+    frame.errors[TEMPERATURE_LASER2] = m_uartFrame.errorLaser & 0x02 || m_uartFrame.errorLaser & 0x20;
+    frame.errors[TEMPERATURE_LASER3] = m_uartFrame.errorLaser & 0x04 || m_uartFrame.errorLaser & 0x40;
+    frame.errors[TEMPERATURE_LASER4] = m_uartFrame.errorLaser & 0x08 || m_uartFrame.errorLaser & 0x80;
+
     frame.status = m_uartFrame.status;
 
     return frame;
@@ -119,7 +124,7 @@ void Mapping::doneReadingUartBuffer()
     m_uartFrame.errorCurrent = m_uartBuffer[0];
     m_uartFrame.errorTemperature = m_uartBuffer[1];
     m_uartFrame.errorVoltage = m_uartBuffer[2];
-    m_uartFrame.errorBMS = m_uartBuffer[3];
+    m_uartFrame.errorLaser = m_uartBuffer[3];
     m_uartFrame.vddHigh = m_uartBuffer[4];
     m_uartFrame.vddLow = m_uartBuffer[5];
 

@@ -42,7 +42,7 @@ struct UART_Frame {
     unsigned char errorCurrent;
     unsigned char errorTemperature;
     unsigned char errorVoltage;
-    unsigned char errorBMS;
+    unsigned char errorLaser;
     unsigned char vddHigh;
     unsigned char vddLow;
 

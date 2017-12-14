@@ -12,7 +12,7 @@
 #include "valueelement.h"
 #include "graphbarelement.h"
 
-#define IMG_RATIO           0.6
+#define IMG_RATIO           0.4
 #define UPDATE_FREQ_MS      500
 
 enum States {

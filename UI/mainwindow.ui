@@ -69,22 +69,6 @@
        </layout>
       </widget>
      </item>
-     <item row="7" column="3">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Minimum</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="3" column="1" rowspan="2">
       <widget class="QGroupBox" name="groupBoxControls">
        <property name="title">
@@ -97,18 +81,48 @@
        </layout>
       </widget>
      </item>
-     <item row="0" column="2">
-      <spacer name="horizontalSpacer_3">
+     <item row="0" column="3" rowspan="5">
+      <widget class="QGroupBox" name="groupBoxDrone">
+       <property name="title">
+        <string>Drone</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutDrone"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QGroupBox" name="groupBoxHMP">
+       <property name="title">
+        <string>HMP</string>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>381</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayoutHMP"/>
+       </widget>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <spacer name="verticalSpacer_4">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeType">
         <enum>QSizePolicy::Minimum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>10</width>
-         <height>20</height>
+         <width>20</width>
+         <height>150</height>
         </size>
        </property>
       </spacer>
@@ -129,20 +143,8 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="3" rowspan="5">
-      <widget class="QGroupBox" name="groupBoxDrone">
-       <property name="title">
-        <string>Drone</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayoutDrone"/>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="7" column="4">
-      <spacer name="horizontalSpacer_5">
+     <item row="7" column="3">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -152,6 +154,22 @@
        <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="2">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
          <height>20</height>
         </size>
        </property>
@@ -170,18 +188,18 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="2">
-      <spacer name="verticalSpacer_4">
+     <item row="7" column="4">
+      <spacer name="horizontalSpacer_5">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
         <enum>QSizePolicy::Minimum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>20</width>
-         <height>150</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
@@ -201,24 +219,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item row="2" column="1">
-      <widget class="QGroupBox" name="groupBoxHMP">
-       <property name="title">
-        <string>HMP</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>381</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutHMP"/>
-       </widget>
-      </widget>
      </item>
      <item row="2" column="2">
       <spacer name="verticalSpacer_2">
@@ -241,10 +241,10 @@
        <widget class="QWidget" name="verticalLayoutWidget_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>160</width>
-          <height>80</height>
+          <x>12</x>
+          <y>20</y>
+          <width>31</width>
+          <height>201</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayoutStatus"/>
@@ -260,7 +260,7 @@
      <x>0</x>
      <y>0</y>
      <width>564</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

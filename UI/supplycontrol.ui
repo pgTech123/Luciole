@@ -16,10 +16,10 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>10</y>
-     <width>630</width>
-     <height>224</height>
+     <x>39</x>
+     <y>3</y>
+     <width>631</width>
+     <height>241</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -64,7 +64,15 @@
        </widget>
       </item>
       <item>
-       <widget class="QLCDNumber" name="lcdNumberRealCurrent"/>
+       <widget class="QLCDNumber" name="lcdNumberRealCurrent">
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -134,7 +142,15 @@
        </widget>
       </item>
       <item>
-       <widget class="QLCDNumber" name="lcdNumberRealVoltage"/>
+       <widget class="QLCDNumber" name="lcdNumberRealVoltage">
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

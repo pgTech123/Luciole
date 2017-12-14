@@ -30,7 +30,6 @@ void Controls::valueChanged(int, float, bool)
 
 void Controls::statusUpdate(unsigned char status)
 {
-    // FIXME: Not tested...
     if (!(status & 0x01)) {
         if (ui->pushButtonLock->text() == "Unlock") {
             disconnect(ui->pushButtonLock, SIGNAL(clicked(bool)), this, SLOT(unlock(bool)));
